@@ -34,3 +34,10 @@ year = st.slider('Year', 2015, 2020, 2020)
 filtered_data = data[data['date'].dt.year == year]
 st.subheader(f'Map of all cities in the year {year}')
 st.map(filtered_data)
+
+## Line chart
+st.subheader(f'Line chart of AQI Levels in {year}')
+city = st.radio('Select City', data.city.unique())
+city_data = data[data['year'] == year][data['city'] == city]
+st.subheader(f'Showing results for {city} in {year}')
+st.line_chart(city_data['aqi'])
